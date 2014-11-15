@@ -1,0 +1,153 @@
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+.centered(@width: 100%) {
+    margin-left: auto;
+    margin-right: auto;
+    width: @width;
+}
+
+body {
+    padding-top: 70px;
+    /*color: #000000;*/
+}
+
+a {
+    /*color: lighten(#000000, 40%);*/
+}
+    a:hover {
+    /*color: lighten(#000000, 60%);*/
+    }
+
+#page-wrap {
+    /*.centered(75%);*/
+
+    /*background-color: #55432D;*/
+}
+
+.logo {
+    width: @logo-size;
+    height: @logo-size;
+
+    .border-radius(ceil(@logo-size / 2));
+
+    background-color: blue;
+
+    .centered(@logo-size);
+}
+
+.search-input {
+    margin-top: 3px;
+}
+
+#footer {
+    color: #777;
+    text-align: center;
+}
+
+/*@media (min-width: 975px) {*/
+    #sidebar.affix-top {
+        position: static;
+        /*margin-top:25px;*/
+        width:100%;
+    }
+
+    #sidebar.affix {
+        position: fixed;
+        /*top:25px;*/
+        width:25%;
+        padding-right: 30px;
+    }
+/*}*/
+@media (max-width: 991px) {
+    #sidebar.affix {
+        position: static;
+        width:100%;
+        padding-right: 0px;
+    }
+    #sidebar.affix-top {
+        position: static;
+    }
+}
+
+#sidebar .form-horizontal .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.form-inline .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+.form-inline .form-group input {
+    width: 100%;
+}
+
+.row .form-group {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.modal-open {
+    /*overflow: scroll;*/
+    overflow: scroll;
+}
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.card-image {
+    border:none;
+    .border-radius(13px);
+}
+
+.btn-exclude:before, .btn-exclude:after {
+    position: absolute;
+    content: '';
+    background: red;
+    display: block;
+    width: 100%;
+    height: 3px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    //center the X vertically and horizontally:
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: 0.5;
+}
+
+.bootstrap-touchspin .form-control {
+    color: #000;
+}
+
+.btn-exclude:after {
+    transform: rotate(45deg);
+}
+
+.btn-include {
+
+}
+
+.btn-ignore {
+    filter: grayscale(100%); /* Current draft standard */
+    -webkit-filter: grayscale(100%); /* New WebKit */
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%); 
+    -o-filter: grayscale(100%); /* Not yet supported in Gecko, Opera or IE */
+    filter: gray; /* IE */
+    -webkit-filter: grayscale(1); /* Old WebKit */
+    filter: url(/filters.svg#grayscale); /* Gecko */
+}
+
+
+@logo-size: 128px;

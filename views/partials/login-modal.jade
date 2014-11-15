@@ -1,0 +1,21 @@
+.modal-content
+    .modal-header
+        button.close(ng-click="cancel()")
+            span(aria-hidden='true') ×
+            span.sr-only Close
+        h4.modal-title Log in
+    .modal-body
+        .row
+            .well
+                form(id="loginForm" method="POST" action="/login/" novalidate="novalidate")
+                    .form-group
+                        label(for="username" class="control-label") Username
+                        input(type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="example@gmail.com")
+                        span(class="help-block")
+                    .form-group
+                        label(for="password" class="control-label") Password
+                        input(type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password")
+                        span(class="help-block")
+                    #loginErrorMsg.alert.alert-error.hide Wrong username or password
+                    button.btn.btn-success.btn-block(type="submit") Log in
+                    a.btn.btn-default.btn-block(href="#/signup") Sign up

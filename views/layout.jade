@@ -1,0 +1,89 @@
+doctype html
+html(lang='fr')
+    head
+        meta(charset='utf-8')
+        title Magecom Template
+        link(rel='stylesheet', href='/components/bootstrap/less/bootstrap.css')
+        link(rel='stylesheet', href='/components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+
+        script(src='/components/jquery/dist/jquery.js')
+        script(src='/components/angular/angular.js')
+        script(src='/components/angular-route/angular-route.js')
+        script(src='/components/angular-resource/angular-resource.js')
+        script(src='/components/angular-sanitize/angular-sanitize.js')
+        script(src='/javascripts/providers/angular-storage.js')
+        script(src='/components/angular-bootstrap/ui-bootstrap-tpls.js')
+        script(src='/components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js')
+    body(ng-app='magecom')
+        #page-wrap(ng-controller="GlobalCtrl")
+            header#header(role='banner')
+
+            #menu
+                nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+                    .container-fluid
+                        .navbar-header
+                            a.navbar-brand(href='#') Logo
+                        ul.nav.navbar-nav.navbar-left
+                            li(ng-class="{active: menu.active == 'home'}")
+                                a(href='#/')
+                                    span.glyphicon.glyphicon-home
+                                    |  Home
+                            li(ng-class="{active: menu.active == 'card'}")
+                                a(href='#/card') Cards
+                            li(ng-class="{active: menu.active == 'deck'}")
+                                a(href='#') Decks
+                            li(ng-class="{active: menu.active == 'combo'}")
+                                a(href='#') Combos
+                            li(ng-class="{active: menu.active == 'player'}")
+                                a(href='#') Players
+                        ul.nav.navbar-nav.navbar-right(ng-if="currentUser")
+                            li.dropdown
+                                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                                    | {{currentUser.name}} 
+                                    span.caret
+                                ul.dropdown-menu(role='menu')
+                                    li
+                                        a(href='') My account
+                                    li
+                                        a(href='') My collection
+                                    li
+                                        a(href='') My decks
+                                    li
+                                        a(href='') My combos
+                                    li.divider
+                                    li
+                                        a(href='') Log out
+                        ul.nav.navbar-nav.navbar-right(ng-if="!currentUser")
+                            li
+                                a(href='', ng-click='openLoginModal()') Log in
+                            li
+                                a(href='#/signup') Sign up
+                        form.nav.navbar-form.navbar-right(role='search')
+                            .input-group
+                                input.form-control(type='text', placeholder='Search')
+                                span.input-group-btn
+                                    button.btn.btn-default(type="button") Go!
+                        ul.nav.navbar-nav.navbar-right
+                            li(ng-class="{active: menu.active == 'cart'}")
+                                a(href='#/cart')
+                                    span.glyphicon.glyphicon-shopping-cart
+                                    |  
+                                    span.badge {{$storage.cart.cards.length}} items
+                                    span.badge {{$storage.cart.total | number:2}} €
+
+            block content
+            footer#footer(role='contentinfo')
+                hr
+                .container
+                    p
+                        | Conditions - bla bla - legal - nia nia
+
+        script(src='/javascripts/app.js')
+        script(src='/javascripts/services/card.js')
+        script(src='/javascripts/filters/mana.js')
+        script(src='/javascripts/controllers/global.js')
+        script(src='/javascripts/controllers/main.js')
+        script(src='/javascripts/controllers/card.js')
+        script(src='/javascripts/controllers/cart.js')
+        script(src='/javascripts/controllers/signup.js')

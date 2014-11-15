@@ -1,0 +1,146 @@
+doctype html
+html(lang='fr')
+head
+    meta(charset='utf-8')
+    title Magecom Template
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.css')
+
+    script(src='/components/jquery/dist/jquery.js')
+    script(src='/components/angular/angular.js')
+    script(src='/components/angular-route/angular-route.js')
+    script(src='/components/angular-resource/angular-resource.js')
+    script(src='/components/angular-bootstrap/ui-bootstrap.js')
+    script(src='/components/bootstrap/dist/js/bootstrap.js')
+
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/controllers/main.js')
+
+    script.
+      $(function() {
+        $('.thumbnail').tooltip();
+      });
+  body(ng-app='testApp')
+    #page-wrap
+      header#header(role='banner')
+
+      #menu
+        nav.navbar.navbar-default(role='navigation')
+          .container-fluid
+            .navbar-header
+              a.navbar-brand(href='#') Icon
+            ul.nav.navbar-nav.navbar-left
+              li(ng-class="{'active': menu.home}")
+                a(href='#') Home
+              li(ng-class="{'active': menu.cards}")
+                a(href='#/cards') Cards
+              li(ng-class="{'active': menu.home}")
+                a(href='#') Decks
+              li(ng-class="{'active': menu.home}")
+                a(href='#') Combos
+              li(ng-class="{'active': menu.home}")
+                a(href='#') Players
+            ul.nav.navbar-nav.navbar-right
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | Account
+                  span.caret
+                ul.dropdown-menu(role='menu')
+                  li
+                    a(href='') My account
+                  li
+                    a(href='') My collection
+                  li
+                    a(href='') My decks
+                  li
+                    a(href='') My combos
+                  li.divider
+                  li
+                    a(href='') Logout
+            form.navbar-form.navbar-right(role='search')
+              .form-group
+                input.form-control(type='text', placeholder='Search')
+
+      #content
+        .jumbotron
+          h1 Bienvenue
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in nisi magna. Nam faucibus dolor sed tortor faucibus sodales sed id eros. Donec pellentesque eros non rhoncus pretium. Sed id neque nulla. Nullam vitae lacinia tellus, in euismod tellus. Praesent et mauris commodo sem auctor consectetur. Proin ultricies placerat justo, et ultricies risus commodo vitae. Cras ac purus
+            a(href='') vitae dolor
+            | molestie
+            a(href='') vehicula
+            | .
+          p
+            a.btn.btn-primary.btn-lg(href='#', role='button') Learn more
+        .container-fluid
+          p.well
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in nisi magna. Nam faucibus dolor sed tortor faucibus sodales sed id eros. Donec pellentesque eros non rhoncus pretium. Sed id neque nulla. Nullam vitae lacinia tellus, in euismod tellus. Praesent et mauris commodo sem auctor consectetur. Proin ultricies placerat justo, et ultricies risus commodo vitae. Cras ac purus vitae dolor molestie vehicula.
+          h1 Popular cards
+          .container-fluid
+            .row
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#', data-toggle='modal', data-target='#cardModal1', data-placement='top', title='Nom de carte')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#', data-toggle='modal', data-target='#cardModal2', data-placement='top', title='Nom de carte long')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#', data-toggle='modal', data-target='#cardModal3', data-placement='top', title='Nom de carte très long')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#', data-toggle='modal', data-target='#cardModal3', data-placement='top', title='Nom de carte très très long')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+              .col-xs-6.col-sm-4.col-md-3.col-lg-1
+                a.thumbnail(href='#')
+                  img(src='http://lorempixel.com/223/310/abstract/', alt='...')
+          p
+            | Sed vel ipsum lectus.
+            a(href='') Mauris sed neque odio.
+            | Praesent sit amet velit sit amet ex mollis lacinia sagittis sed est. Mauris porta felis et facilisis vehicula. Pellentesque vitae tellus bibendum, blandit lorem vel, feugiat magna. Sed lacinia vel nulla eu consequat. Nunc tempor ipsum vel dui consequat, et venenatis velit dictum. Sed eu quam massa. Suspendisse potenti. Aenean vehicula fringilla velit. Sed suscipit posuere sem et lobortis. Ut volutpat luctus tortor. Nullam posuere vel metus ornare scelerisque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed consectetur diam orci, non malesuada arcu convallis volutpat. Morbi vel metus enim.
+          p
+            | Sed egestas massa augue, et maximus velit varius ultrices. Ut velit augue, varius eget metus ut, molestie ornare diam. Proin faucibus auctor dui, et feugiat neque auctor eu.
+            a(href='') Pellentesque semper
+            | velit elementum vestibulum pretium. Donec fringilla, justo ac elementum lacinia, mauris lacus interdum metus, non condimentum ipsum quam a nibh. Cras ac lorem orci. Curabitur tempus mattis mauris in aliquet. Aliquam porta condimentum nisi, nec mattis diam sagittis fermentum. Sed facilisis vestibulum finibus. Proin lacinia, augue ac finibus efficitur, quam felis imperdiet libero, in sagittis quam urna in metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nulla nisi, posuere nec mi et, rhoncus congue orci.
+          p.well
+            | Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam et mollis nunc. Nulla id justo vel libero consequat faucibus. Phasellus id eros sapien. Nullam finibus sed massa eget mollis. Suspendisse eget dignissim tellus. Aenean congue odio sit amet lectus cursus tincidunt. Vivamus at nisl quam. Etiam pulvinar velit ut faucibus malesuada. Fusce sed metus justo. Suspendisse molestie nisl eget facilisis ultrices. In urna ex, pharetra in purus non, vestibulum luctus ligula. Fusce justo tellus, sagittis a nisl quis, eleifend vulputate odio.
+
+      footer#footer(role='contentinfo')
+        hr
+        .container
+          p
+            | Conditions - bla bla - legal - nia nia
+
+      #cardModal1.modal.fade(tabindex='-1', role='dialog')
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal')
+                span(aria-hidden='true') ×
+                span.sr-only Close
+              h4.modal-title Modal title
+            .modal-body
+              | ...
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') Go to card page
+              button.btn.btn-primary(type='button') Add to cart

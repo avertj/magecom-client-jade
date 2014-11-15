@@ -1,0 +1,22 @@
+.modal-content
+    .modal-header
+        button.close(ng-click="cancel()")
+            span(aria-hidden='true') ×
+            span.sr-only Close
+        h4.modal-title {{card.name}}
+    .modal-body
+        .container-fluid
+            .row
+                .col-xs-6
+                    img.card-image(ng-src='{{card.img}}', alt='{{card.name}}')
+                .col-xs-6
+                    p {{card.type}}
+                    .well.text-justify
+                        p(ng-repeat="line in card.text")
+                            span(ng-bind-html="line | mana:'small'")
+                    .well.text-justify(ng-if="card.flavor.length > 0")
+                        p(ng-repeat="line in card.flavor")
+                            i(ng-bind-html="line")
+    .modal-footer
+        a.btn.btn-default(href="#/card/{{card.id}}" ng-click="cancel()") Go to card page
+        button.btn.btn-primary(ng-if="!hideCartButton", ng-click="addToCart(card)") Add to cart

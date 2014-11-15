@@ -1,0 +1,21 @@
+.container
+    p.well
+        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in nisi magna. Nam faucibus dolor sed tortor faucibus sodales sed id eros. Donec pellentesque eros non rhoncus pretium. Sed id neque nulla. Nullam vitae lacinia tellus, in euismod tellus. Praesent et mauris commodo sem auctor consectetur. Proin ultricies placerat justo, et ultricies risus commodo vitae. Cras ac purus vitae dolor molestie vehicula.
+    h2 Popular cards
+    .container-fluid
+        .row
+            .col-xs-6.col-sm-4.col-md-2.col-lg-2(ng-repeat="card in cards | limitTo : 10")
+                .thumbnail
+                    a(href='#/card/{{card.id}}', ng-click="openCardModal($event, card.id)")
+                        img.card-image(ng-src='{{card.img}}', alt='{{card.name}}', tooltip="{{card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+
+    p
+        | Sed vel ipsum lectus.
+        a(href='') Mauris sed neque odio.
+        | Praesent sit amet velit sit amet ex mollis lacinia sagittis sed est. Mauris porta felis et facilisis vehicula. Pellentesque vitae tellus bibendum, blandit lorem vel, feugiat magna. Sed lacinia vel nulla eu consequat. Nunc tempor ipsum vel dui consequat, et venenatis velit dictum. Sed eu quam massa. Suspendisse potenti. Aenean vehicula fringilla velit. Sed suscipit posuere sem et lobortis. Ut volutpat luctus tortor. Nullam posuere vel metus ornare scelerisque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed consectetur diam orci, non malesuada arcu convallis volutpat. Morbi vel metus enim.
+    p
+        | Sed egestas massa augue, et maximus velit varius ultrices. Ut velit augue, varius eget metus ut, molestie ornare diam. Proin faucibus auctor dui, et feugiat neque auctor eu.
+        a(href='') Pellentesque semper
+        | velit elementum vestibulum pretium. Donec fringilla, justo ac elementum lacinia, mauris lacus interdum metus, non condimentum ipsum quam a nibh. Cras ac lorem orci. Curabitur tempus mattis mauris in aliquet. Aliquam porta condimentum nisi, nec mattis diam sagittis fermentum. Sed facilisis vestibulum finibus. Proin lacinia, augue ac finibus efficitur, quam felis imperdiet libero, in sagittis quam urna in metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nulla nisi, posuere nec mi et, rhoncus congue orci.
+    p.well
+        | Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam et mollis nunc. Nulla id justo vel libero consequat faucibus. Phasellus id eros sapien. Nullam finibus sed massa eget mollis. Suspendisse eget dignissim tellus. Aenean congue odio sit amet lectus cursus tincidunt. Vivamus at nisl quam. Etiam pulvinar velit ut faucibus malesuada. Fusce sed metus justo. Suspendisse molestie nisl eget facilisis ultrices. In urna ex, pharetra in purus non, vestibulum luctus ligula. Fusce justo tellus, sagittis a nisl quis, eleifend vulputate odio.

@@ -1,0 +1,30 @@
+.container
+        p.well
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in nisi magna. Nam faucibus dolor sed tortor faucibus sodales sed id eros. Donec pellentesque eros non rhoncus pretium. Sed id neque nulla. Nullam vitae lacinia tellus, in euismod tellus. Praesent et mauris commodo sem auctor consectetur. Proin ultricies placerat justo, et ultricies risus commodo vitae. Cras ac purus vitae dolor molestie vehicula.
+        h2 Sign up
+        .container-fluid
+                form.form-horizontal(role="form")
+                    .form-group
+                        label.col-sm-2.control-label(for="email") Email
+                        .col-sm-10
+                            input#email.form-control(type="email", placeholder="Email")
+
+                    .form-group
+                        label.col-sm-2.control-label(for="pwd") Password
+                        .col-sm-10
+                            input#pwd.form-control(type="password", placeholder="Password")
+                    .form-group
+                        label.col-sm-2.control-label(for="pwdchk") Retype password
+                        .col-sm-10
+                            input#pwdchk.form-control(type="password", placeholder="Password")
+
+                    .form-group
+                        .col-sm-offset-2.col-sm-10
+                            .checkbox
+                                label
+                                    input(type="checkbox")
+                                    span Remember me
+
+                    .form-group
+                        .col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type="submit") Sign up
