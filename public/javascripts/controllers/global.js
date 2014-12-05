@@ -2,6 +2,8 @@
 
 angular.module('magecomControllers')
     .controller('GlobalCtrl', ['$scope', '$log', '$modal', '$localStorage', '$filter', 'Card', function($scope, $log, $modal, $localStorage, $filter, Card) {
+        $scope.cdnURL = 'http://localhost:8000/';
+        $scope.apiURL = 'http://localhost:8080/magecom-ejb/api/';
         $scope.currentUser = null;
         $scope.menu = {
             active: 'home'
@@ -19,7 +21,7 @@ angular.module('magecomControllers')
         $scope.computeTotal = function() {
             var total = 0;
             angular.forEach($scope.$storage.cart.cards, function (value, key) {
-                total += value.price * value.quantity;
+                total += value.card.price * value.quantity;
             });
             $scope.$storage.cart.total = total;
         };
@@ -31,7 +33,7 @@ angular.module('magecomControllers')
                 found[0].quantity = Math.max(1, newq);
 
             } else {
-                $scope.$storage.cart.cards.push({id: card.id, card: card, price: Math.floor((Math.random() * 10) + 1), quantity: quantity});
+                $scope.$storage.cart.cards.push({id: card.id, card: card, quantity: quantity});
             }
             $scope.computeTotal();
             $scope.$storage.$save();

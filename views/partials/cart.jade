@@ -4,23 +4,23 @@
     h2 Your cart
     .container-fluid
         .row
-            .col-xs-6.col-sm-4.col-md-2.col-lg-2(ng-repeat="card in $storage.cart.cards")
+            .col-xs-6.col-sm-4.col-md-2.col-lg-2(ng-repeat="tuple in $storage.cart.cards")
                 .thumbnail
-                    a(href='#/card/{{card.id}}', ng-click="openCardModal($event, card.card.id, true)")
-                        img.card-image(ng-src='{{card.card.img}}', alt='{{card.card.name}}', tooltip="{{card.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                    a(href='#/card/{{tuple.id}}', ng-click="openCardModal($event, tuple.card.id, true)")
+                        img.card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
                     .caption
                         .row
-                            .well.text-center {{card.quantity}} &times; {{card.price | number:2}} € = {{card.quantity*card.price | number:2}} €
+                            .well.text-center {{tuple.quantity}} &times; {{tuple.card.price | number:2}} € = {{tuple.quantity*tuple.card.price | number:2}} €
                         .row
                             .col-xs-6
                                 .input-group.bootstrap-touchspin
-                                    input.form-control.spinner-input(type='text', name='spin', ng-model='card.quantity')
+                                    input.form-control.spinner-input(type='text', name='spin', ng-model='tuple.quantity')
                                     span.input-group-btn-vertical
-                                        button.btn.btn-default.bootstrap-touchspin-up(type='button', ng-click="addToCart(card.card, 1)")
+                                        button.btn.btn-default.bootstrap-touchspin-up(type='button', ng-click="addToCart(tuple.card, 1)")
                                             i.glyphicon.glyphicon-plus
-                                        button.btn.btn-default.bootstrap-touchspin-down(type='button', ng-click="addToCart(card.card, -1)")
+                                        button.btn.btn-default.bootstrap-touchspin-down(type='button', ng-click="addToCart(tuple.card, -1)")
                                             i.glyphicon.glyphicon-minus
                             .col-xs-6
-                                button.btn.btn-danger(ng-click="removeFromCart(card.card)")
+                                button.btn.btn-danger(ng-click="removeFromCart(tuple.card)")
                                     span Remove
                             

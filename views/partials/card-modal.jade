@@ -4,18 +4,19 @@
             span(aria-hidden='true') ×
             span.sr-only Close
         h4.modal-title {{card.name}}
+        span(ng-bind-html="card.manaString | mana:'medium'")
     .modal-body
         .container-fluid
             .row
                 .col-xs-6
-                    img.card-image(ng-src='{{card.img}}', alt='{{card.name}}')
+                    img.card-image(ng-src='{{cdnURL + "cards/card/" + card.id + ".jpg"}}', alt='{{card.name}}')
                 .col-xs-6
                     p {{card.type}}
                     .well.text-justify
                         p(ng-repeat="line in card.text")
                             span(ng-bind-html="line | mana:'small'")
-                    .well.text-justify(ng-if="card.flavor.length > 0")
-                        p(ng-repeat="line in card.flavor")
+                    .well.text-justify(ng-if="card.flavorText.length > 0")
+                        p(ng-repeat="line in card.flavorText")
                             i(ng-bind-html="line")
     .modal-footer
         a.btn.btn-default(href="#/card/{{card.id}}" ng-click="cancel()") Go to card page
