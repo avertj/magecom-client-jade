@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('magecomServices', ['ngResource']);
-angular.module('magecomControllers', ['ngSanitize', 'ngStorage']);
+angular.module('magecomControllers', ['ngSanitize', 'ngStorage', 'ngCookies']);
 angular.module('magecomFilters', []);
 angular.module('magecomDirectives', []);
 

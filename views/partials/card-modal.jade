@@ -3,8 +3,9 @@
         button.close(ng-click="cancel()")
             span(aria-hidden='true') ×
             span.sr-only Close
-        h4.modal-title {{card.name}}
-        span(ng-bind-html="card.manaString | mana:'medium'")
+        div
+            h4.modal-title(ng-class="{uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}") {{card.name}}
+            span.pull-right(ng-bind-html="card.manaString | mana:'medium'")
     .modal-body
         .container-fluid
             .row
@@ -20,4 +21,4 @@
                             i(ng-bind-html="line")
     .modal-footer
         a.btn.btn-default(href="#/card/{{card.id}}" ng-click="cancel()") Go to card page
-        button.btn.btn-primary(ng-if="!hideCartButton", ng-click="addToCart(card)") Add to cart
+        button.btn.btn-primary(ng-if="!hideCartButton", ng-click="addToCart(card)") Add to cart ({{card.price | number:2}} €)

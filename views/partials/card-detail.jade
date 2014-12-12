@@ -11,5 +11,9 @@
                 em {{line}}
             p.well
                 span.lead Decks containing this card
+                p(ng-repeat="deck in decks")
+                    {{deck.name}}
             p.well
                 span.lead Combos containing this card
+                p(ng-repeat="combo in combos")
+                    {{combo.name}}

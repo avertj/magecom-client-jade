@@ -1,24 +1,42 @@
 'use strict';
 
 angular.module('magecomControllers')
-    .controller('GlobalCtrl', ['$scope', '$log', '$modal', '$localStorage', '$filter', 'Card', function($scope, $log, $modal, $localStorage, $filter, Card) {
+    .controller('GlobalCtrl', ['$scope', '$log', '$modal', '$localStorage', '$sessionStorage', '$http', '$filter', 'Card', function($scope, $log, $modal, $localStorage, $sessionStorage, $http, $filter, Card) {
         $scope.cdnURL = 'http://localhost:8000/';
         $scope.apiURL = 'http://localhost:8080/magecom-ejb/api/';
-        $scope.currentUser = null;
         $scope.menu = {
             active: 'home'
         };
 
         $scope.$storage = $localStorage;
+        $scope.$sessionStorage = $sessionStorage;
+
         if(!$scope.$storage.cart) {
             $scope.$storage.cart = {
                 total: 0,
                 cards: []
             };
         }
-        //$scope.cart = $localStorage.cart;
+        if(!$scope.$sessionStorage.user) {
+            $scope.$sessionStorage.user = null;
+        } else {
+            if($scope.$sessionStorage.user.token) {
+                $http.post('http://localhost:8080/magecom-ejb/api/auth/validate', $scope.$sessionStorage.user).
+                    success(function(data, status, headers, config) {
+                    }).
+                    error(function(data, status, headers, config) {
+                        $scope.$sessionStorage.user = null;
+                        $scope.$sessionStorage.$save();
+                    });
+            } else {
+                $scope.$sessionStorage.user = null;
+            }
+        }
 
-        $scope.computeTotal = function() {
+        $scope.$storage.$save();
+        $scope.$sessionStorage.$save();
+
+        $scope.computeCartTotal = function() {
             var total = 0;
             angular.forEach($scope.$storage.cart.cards, function (value, key) {
                 total += value.card.price * value.quantity;
@@ -35,7 +53,7 @@ angular.module('magecomControllers')
             } else {
                 $scope.$storage.cart.cards.push({id: card.id, card: card, quantity: quantity});
             }
-            $scope.computeTotal();
+            $scope.computeCartTotal();
             $scope.$storage.$save();
         }
         $scope.removeFromCart = function (card) {
@@ -49,19 +67,20 @@ angular.module('magecomControllers')
                 //delete $scope.$storage.cart.cards[index];
                 delete $scope.$storage.cart.cards.splice(index, 1);
             }
-            $scope.computeTotal();
+            $scope.computeCartTotal();
             $scope.$storage.$save();
         }
 
         $scope.setCurrentUser = function (user) {
-            $scope.currentUser = user;
+            $scope.$sessionStorage.user = user;
+            $scope.$sessionStorage.$save();
         };
 
         $scope.openCardModal = function ($event, cardId, hideCartButton) {
             if($event.type == 'click' && $event.button == 0) {
                 $event.preventDefault();
                 var hideButton = typeof hideCartButton !== 'undefined' ? hideCartButton : false;
-                var card = Card.get({cardId: cardId});
+                var card = Card.detail.get({cardId: cardId});
                 var modalInstance = $modal.open({
                     templateUrl: 'partials/card-modal.html',
                     controller: 'CardModalInstanceCtrl',
@@ -90,10 +109,14 @@ angular.module('magecomControllers')
             });
 
             modalInstance.result.then(function (outcome) { 
-                $log.info('LoginModal outcome : ' + outcome);
+                $scope.setCurrentUser(outcome);
             }, function () {
                 $log.info('LoginModal dismissed at: ' + new Date());
             });
+        };
+        $scope.logout = function () {
+            $scope.$sessionStorage.user = null;
+            $scope.$sessionStorage.$save();
         };
     }]);
 
@@ -115,7 +138,20 @@ angular.module('magecomControllers')
         };
     });
 angular.module('magecomControllers')
-    .controller('LoginModalInstanceCtrl', function ($scope, $modalInstance) {
+    .controller('LoginModalInstanceCtrl', function ($scope, $modalInstance, $http, $log) {
+
+        $scope.error = false;
+        $scope.form = {};
+
+        $scope.login = function () {
+            $scope.error = false;
+            $http.post('http://localhost:8080/magecom-ejb/api/auth/login', $scope.form)
+                .success(function(data, status, headers, config) {
+                    $modalInstance.close(data);
+                }).error(function(data, status, headers, config) {
+                    $scope.error = true;
+                });
+        }
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');

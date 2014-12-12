@@ -12,6 +12,7 @@ html(lang='fr')
         script(src='/components/angular-route/angular-route.js')
         script(src='/components/angular-resource/angular-resource.js')
         script(src='/components/angular-sanitize/angular-sanitize.js')
+        script(src='/components/angular-cookies/angular-cookies.js')
         script(src='/javascripts/providers/angular-storage.js')
         script(src='/components/angular-bootstrap/ui-bootstrap-tpls.js')
         script(src='/components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js')
@@ -37,10 +38,10 @@ html(lang='fr')
                                 a(href='#') Combos
                             li(ng-class="{active: menu.active == 'player'}")
                                 a(href='#') Players
-                        ul.nav.navbar-nav.navbar-right(ng-if="currentUser")
+                        ul.nav.navbar-nav.navbar-right(ng-if="$sessionStorage.user")
                             li.dropdown
-                                a.dropdown-toggle(href='#', data-toggle='dropdown')
-                                    | {{currentUser.name}} 
+                                a.dropdown-toggle(href='#')
+                                    | {{$sessionStorage.user.username}} 
                                     span.caret
                                 ul.dropdown-menu(role='menu')
                                     li
@@ -53,8 +54,8 @@ html(lang='fr')
                                         a(href='') My combos
                                     li.divider
                                     li
-                                        a(href='') Log out
-                        ul.nav.navbar-nav.navbar-right(ng-if="!currentUser")
+                                        a(href='', ng-click='logout()') Log out
+                        ul.nav.navbar-nav.navbar-right(ng-if="!$sessionStorage.user")
                             li
                                 a(href='', ng-click='openLoginModal()') Log in
                             li
