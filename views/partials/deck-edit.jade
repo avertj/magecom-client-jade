@@ -1,0 +1,60 @@
+.container
+    form
+        .form-group
+            label(for="deckName") Name
+            input#deckName.form-control(type="text", ng-model="deck.name", style="width: 200px;")
+            span.pull-right(ng-if="deck.color.black") 
+                img(src='/cards/symbol/medium/B.jpg')
+            span.pull-right(ng-if="deck.color.blue") 
+                img(src='/cards/symbol/medium/U.jpg')
+            span.pull-right(ng-if="deck.color.green") 
+                img(src='/cards/symbol/medium/G.jpg')
+            span.pull-right(ng-if="deck.color.red") 
+                img(src='/cards/symbol/medium/R.jpg')
+            span.pull-right(ng-if="deck.color.white") 
+                img(src='/cards/symbol/medium/W.jpg')
+        .form-group
+            label(for="deckDescription") Description
+            textarea#deckDescription.form-control(type="text", ng-model="deck.description")
+
+    button.btn.btn-success(ng-click="openSearchModal()") Add card
+    .row
+        .col-sm-3(ng-repeat="tuple in deck.cards") 
+            .thumbnail
+                a(href='#/card/{{tuple.card.id}}', ng-click="openCardModal($event, tuple.card.id)")
+                    img.small-card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                .caption
+                    .container-fluid
+                        .row
+                            .col-xs-6
+                                .input-group.bootstrap-touchspin
+                                    input.form-control.spinner-input(type='text', name='spin', ng-model='tuple.quantity')
+                                    span.input-group-btn-vertical
+                                        button.btn.btn-default.bootstrap-touchspin-up(type='button', ng-click="addToDeck(tuple.card, 1)")
+                                            i.glyphicon.glyphicon-plus
+                                        button.btn.btn-default.bootstrap-touchspin-down(type='button', ng-click="addToDeck(tuple.card, -1)")
+                                            i.glyphicon.glyphicon-minus
+                            .col-xs-6
+                                button.btn.btn-danger(ng-click="removeFromDeck(tuple.card)")
+                                    span Remove
+                        .row
+                            .checkbox
+                                label
+                                    input(type="checkbox", ng-checked="tuple.favorite", ng-disabled="!canfavorite", ng-model="tuple.favorite")
+                                    span Card is highlight of deck
+    button.btn.btn-default.pull-right(ng-click="saveDeck()") Save
+
+    script(type="text/ng-template", id="CardSearchModal.html")
+        .modal-header
+            <h3 class="modal-title">Search</h3>
+        .modal-body
+            form(role='search', ng-submit="doSearch()")
+                .input-group
+                    input.form-control(type='text', placeholder='Search', ng-model="form.name")
+                    span.input-group-btn
+                        button.btn.btn-default(type="submit") Search
+            .container
+                p(ng-repeat="card in cards")
+                    a(ng-click="select(card)", ng-class="{common: card.rarity == 'COMMON', uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}") {{card.name}}
+        .modal-footer
+            button.btn.btn-default(ng-click="cancel()") Cancel

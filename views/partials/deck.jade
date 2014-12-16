@@ -1,0 +1,95 @@
+script(src='/components/bootstrap/dist/js/bootstrap.js')
+script.
+    $(function() {
+        $('#sidebar').affix({
+            offset: {
+                top: $('#sidebar').offset()//$('header').height() + $('#menu').height() + 70
+            }
+        });
+        //console.log($('#sidebar').offset());
+    });
+
+.container-fluid
+    .row
+        .col-md-3
+            #sidebar
+                .well
+                    h4 Deck search
+                    form.form-horizontal(role='form', ng-submit="search()")
+                        .form-group
+                            input.form-control.input-sm(type='text', placeholder='Name', ng-model='form.name')
+                        .form-group
+                            input.form-control.input-sm(type='text', placeholder='Description', ng-model='form.description')
+
+                        .row
+                            .form-group
+                                //.col-sm-4
+                                .form-inline
+                                    .btn-group.btn-group-xs
+                                        label.btn.btn-default.btn-exclude(ng-model="form.black" btn-radio="'false'")
+                                            img(src="/cards/symbol/small/B.jpg")
+                                        label.btn.btn-default.btn-ignore(ng-model="form.black" btn-radio="null")
+                                            img(src="/cards/symbol/small/B.jpg")
+                                        label.btn.btn-default.btn-include(ng-model="form.black" btn-radio="'true'")
+                                            img(src="/cards/symbol/small/B.jpg")
+                                //.col-sm-4
+                                .form-inline
+                                    .btn-group.btn-group-xs
+                                        label.btn.btn-default.btn-exclude(ng-model="form.white" btn-radio="'false'")
+                                            img(src="/cards/symbol/small/W.jpg")
+                                        label.btn.btn-default.btn-ignore(ng-model="form.white" btn-radio="null")
+                                            img(src="/cards/symbol/small/W.jpg")
+                                        label.btn.btn-default.btn-include(ng-model="form.white" btn-radio="'true'")
+                                            img(src="/cards/symbol/small/W.jpg")
+                                //.col-sm-4
+                                .form-inline
+                                    .btn-group.btn-group-xs
+                                        label.btn.btn-default.btn-exclude(ng-model="form.red" btn-radio="'false'")
+                                            img(src="/cards/symbol/small/R.jpg")
+                                        label.btn.btn-default.btn-ignore(ng-model="form.red" btn-radio="null")
+                                            img(src="/cards/symbol/small/R.jpg")
+                                        label.btn.btn-default.btn-include(ng-model="form.red" btn-radio="'true'")
+                                            img(src="/cards/symbol/small/R.jpg")
+                                //.col-sm-4
+                                .form-inline
+                                    .btn-group.btn-group-xs
+                                        label.btn.btn-default.btn-exclude(ng-model="form.blue" btn-radio="'false'")
+                                            img(src="/cards/symbol/small/U.jpg")
+                                        label.btn.btn-default.btn-ignore(ng-model="form.blue" btn-radio="null")
+                                            img(src="/cards/symbol/small/U.jpg")
+                                        label.btn.btn-default.btn-include(ng-model="form.blue" btn-radio="'true'")
+                                            img(src="/cards/symbol/small/U.jpg")
+                                //.col-sm-4
+                                .form-inline
+                                    .btn-group.btn-group-xs
+                                        label.btn.btn-default.btn-exclude(ng-model="form.green" btn-radio="'false'")
+                                            img(src="/cards/symbol/small/G.jpg")
+                                        label.btn.btn-default.btn-ignore(ng-model="form.green" btn-radio="null")
+                                            img(src="/cards/symbol/small/G.jpg")
+                                        label.btn.btn-default.btn-include(ng-model="form.green" btn-radio="'true'")
+                                            img(src="/cards/symbol/small/G.jpg")
+                        button.btn.btn-default(type="submit") Search
+        .col-md-9
+            .container-fluid
+                .row(ng-if="decks.length > 0")
+                    .col-xs-6.col-sm-4.col-md-3.col-lg-2(ng-repeat="deck in decks | limitTo: 20")
+                        .thumbnail
+                            a(href="#/deck/{{deck.id}}")
+                                carousel(ng-if="deck.cards.length > 1", interval="-1", ng-mouseenter="interval=1000; play();", ng-mouseleave="pause()")
+                                    slide(ng-repeat="tuple in deck.cards",  active="tuple.active")
+                                        img.card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}')
+                                img.card-image(ng-if="deck.cards.length == 1", ng-src='{{cdnURL + "cards/card/" + deck.cards[0].card.id + ".jpg"}}')
+                                img.card-image(ng-if="deck.cards.length == 0", ng-src='{{cdnURL + "cards/card/default.jpg"}}')
+                                .caption {{deck.name}}
+                .row(ng-if="cards.length == 0")
+                    h3 Il n'y a pas de résultats pour votre recherche
+            //p
+            //    | Sed vel ipsum lectus.
+            //    a(href='') Mauris sed neque odio.
+            //    | Praesent sit amet velit sit amet ex mollis lacinia sagittis sed est. Mauris porta felis et facilisis vehicula. Pellentesque vitae tellus bibendum, blandit lorem vel, feugiat magna. Sed lacinia vel nulla eu consequat. Nunc tempor ipsum vel dui consequat, et venenatis velit dictum. Sed eu quam massa. Suspendisse potenti. Aenean vehicula fringilla velit. Sed suscipit posuere sem et lobortis. Ut volutpat luctus tortor. Nullam posuere vel metus ornare scelerisque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed consectetur diam orci, non malesuada arcu convallis volutpat. Morbi vel metus enim.
+            //p
+            //    | Sed egestas massa augue, et maximus velit varius ultrices. Ut velit augue, varius eget metus ut, molestie ornare diam. Proin faucibus auctor dui, et feugiat neque auctor eu.
+            //    a(href='') Pellentesque semper
+            //    | velit elementum vestibulum pretium. Donec fringilla, justo ac elementum lacinia, mauris lacus interdum metus, non condimentum ipsum quam a nibh. Cras ac lorem orci. Curabitur tempus mattis mauris in aliquet. Aliquam porta condimentum nisi, nec mattis diam sagittis fermentum. Sed facilisis vestibulum finibus. Proin lacinia, augue ac finibus efficitur, quam felis imperdiet libero, in sagittis quam urna in metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nulla nisi, posuere nec mi et, rhoncus congue orci.
+            //p.well
+            //    | Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam et mollis nunc. Nulla id justo vel libero consequat faucibus. Phasellus id eros sapien. Nullam finibus sed massa eget mollis. Suspendisse eget dignissim tellus. Aenean congue odio sit amet lectus cursus tincidunt. Vivamus at nisl quam. Etiam pulvinar velit ut faucibus malesuada. Fusce sed metus justo. Suspendisse molestie nisl eget facilisis ultrices. In urna ex, pharetra in purus non, vestibulum luctus ligula. Fusce justo tellus, sagittis a nisl quis, eleifend vulputate odio.

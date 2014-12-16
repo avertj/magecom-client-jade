@@ -96,9 +96,7 @@ angular.module('magecomControllers')
 
                 modalInstance.result.then(function (outcome) {
                     if(outcome == 'addToCart') $scope.addToCart(card, 1);
-                    $log.info('CardModal outcome : ' + outcome);
                 }, function () {
-                    $log.info('CardModal dismissed at: ' + new Date());
                 });
             }
         };
@@ -111,7 +109,6 @@ angular.module('magecomControllers')
             modalInstance.result.then(function (outcome) { 
                 $scope.setCurrentUser(outcome);
             }, function () {
-                $log.info('LoginModal dismissed at: ' + new Date());
             });
         };
         $scope.logout = function () {

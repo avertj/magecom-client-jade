@@ -4,7 +4,7 @@
             span(aria-hidden='true') ×
             span.sr-only Close
         div
-            h4.modal-title(ng-class="{uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}") {{card.name}}
+            span.modal-title(ng-class="{uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}") {{card.name}}
             span.pull-right(ng-bind-html="card.manaString | mana:'medium'")
     .modal-body
         .container-fluid

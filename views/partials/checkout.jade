@@ -1,0 +1,137 @@
+.container-fluid
+    div(ng-if="mustlog")
+        span You must 
+        a(ng-click="openLoginModal()") log in
+        span  or 
+        a(href="#/signup") sign up
+        span  before you can proceed.
+    div(ng-if="!mustlog && state == 'details'")
+        .container
+            h1 Shipping and payment details
+            hr
+            h3 Shipping
+            form.form-horizontal
+                .form-group
+                    label.control-label.col-sm-3(for="firstname") First name
+                    .col-sm-5
+                        input#firstname.form-control(ng-model="member.firstName", name="firstname", placeholder="First name", type="text", required)
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="lastname") Last name
+                    .col-sm-5
+                        input#lastname.form-control(ng-model="member.lastName", name="lastname", placeholder="Last name", type="text", required)
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="address") Address
+                    .col-sm-5
+                        input#address.form-control(ng-model="member.address", name="address", placeholder="Address", type="text", required)
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="addinfo") Additionnal information
+                    .col-sm-5
+                        textarea#addinfo.form-control(ng-model="member.additionalInformation", name="addinfo", placeholder="Appartment number, locality, ...")
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="zipcode") Zip code
+                    .col-sm-2
+                        input#zipcode.form-control(ng-model="member.zipCode", name="zipcode", placeholder="Zip code", type="text", required)
+                    .col-sm-7
+                .form-group
+                    label.control-label.col-sm-3(for="city") City
+                    .col-sm-5
+                        input#city.form-control(ng-model="member.city", name="city", placeholder="City", type="text", required)
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="country") Country
+                    .col-sm-5
+                        input#country.form-control(ng-model="member.country", name="country", placeholder="Country", type="text", required)
+                    .col-sm-4
+            h3 Payment
+            form.form-horizontal
+                .form-group
+                    label.control-label.col-sm-3(for="cardnumber") Card number
+                    .col-sm-5
+                        input#cardnumber.form-control(name="cardnumber", placeholder="Card number", type="text", required)
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="securitycode") Security code
+                    .col-sm-1
+                        input#securitycode.form-control(name="securitycode", placeholder="XXX", type="text", required)
+                    .col-sm-8
+        .container-fluid
+            form
+                .form-group
+                    a.btn.btn-success.pull-right(ng-click="forward()") Review purchase >
+                    button.btn.btn-danger.pull-right(ng-click="back()") < Back to cart
+    div(ng-if="!mustlog && state == 'review'")
+        .container
+            table.table.table-striped
+                thead
+                    tr 
+                        td Name
+                        td Price
+                        td Quantity
+                        td Total
+                    tr(ng-repeat="tuple in $storage.cart.cards")
+                        td
+                            a(ng-click="openCardModal($event, tuple.card.id, true)", ng-class="{common: tuple.card.rarity == 'COMMON', uncommon: tuple.card.rarity == 'UNCOMMON', rare: tuple.card.rarity == 'RARE'}") {{tuple.card.name}}
+                        td 
+                            span {{tuple.card.price | number:2}} €
+                        td 
+                            span {{tuple.quantity}}
+                        td
+                            span {{(tuple.quantity * tuple.card.price) | number:2}} €
+            span.pull-right Total : {{$storage.cart.total | number:2}} €
+        .container-fluid
+            form
+                .form-group
+                    a.btn.btn-success.pull-right(ng-click="forward()") Confirm purchase >
+                    button.btn.btn-danger.pull-right(ng-click="back()") < Back
+                    button.btn.btn-danger.pull-right(ng-click="cancel()") << Back to cart
+    div(ng-if="!mustlog && state == 'done'")
+        .container-fluid
+            div(ng-if="status == 'waiting'")
+                span Waiting for response...
+            div(ng-if="status == 'success'")
+                span Success !
+            div(ng-if="status == 'error'")
+                span An error occured :(
+    //div(ng-if="$storage.cart.cards.length > 0")
+        h2 Your cart
+        .container-fluid
+            .row
+                .col-xs-6.col-sm-4.col-md-2.col-lg-2(ng-repeat="tuple in $storage.cart.cards")
+                    .thumbnail
+                        a(href='#/card/{{tuple.id}}', ng-click="openCardModal($event, tuple.card.id, true)")
+                            img.card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                        .caption
+                            .row
+                                .well.text-center {{tuple.quantity}} &times; {{tuple.card.price | number:2}} € = {{tuple.quantity*tuple.card.price | number:2}} €
+                            .row
+                                .col-xs-6
+                                    .input-group.bootstrap-touchspin
+                                        input.form-control.spinner-input(type='text', name='spin', ng-model='tuple.quantity')
+                                        span.input-group-btn-vertical
+                                            button.btn.btn-default.bootstrap-touchspin-up(type='button', ng-click="addToCart(tuple.card, 1)")
+                                                i.glyphicon.glyphicon-plus
+                                            button.btn.btn-default.bootstrap-touchspin-down(type='button', ng-click="addToCart(tuple.card, -1)")
+                                                i.glyphicon.glyphicon-minus
+                                .col-xs-6
+                                    button.btn.btn-danger(ng-click="removeFromCart(tuple.card)")
+                                        span Remove
+        .container-fluid
+            form
+                .form-group
+                    button.btn.btn-success.pull-right Checkout
+                    button.btn.btn-danger.pull-right(ng-click="openConfirmation()") Empty cart
+    //div(ng-if="$storage.cart.cards.length == 0")
+        h2 Your cart is empty
+    //div(ng-controller="EmptyCartConfirmCtrl")
+    //script(type="text/ng-template", id="EmptyCartConfirm.html")
+        .modal-header
+            <h3 class="modal-title">Caution</h3>
+        .modal-body
+            p Are you sure you want to empty your cart ? (This cannot be undone)
+        .modal-footer
+            button.btn.btn-danger(ng-click="confirm()") Confirm
+            button.btn.btn-default(ng-click="cancel()") Cancel

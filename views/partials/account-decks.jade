@@ -1,0 +1,24 @@
+.container-fluid
+    div(ng-if="mustlog")
+        span You must 
+        a(ng-click="openLoginModal()") log in
+        span  or 
+        a(href="#/signup") sign up
+        span  before you can proceed.
+    div(ng-if="!mustlog")
+        .container
+            h1 Your decks
+            .panel.panel-primary(ng-repeat="deck in member.decks")
+                .panel-heading
+                    .panel-title
+                        span {{deck.name}}
+                        a(href="#/deck/{{deck.id}}/edit", tooltip="Delete", tooltip-placement="top", tooltip-trigger="mouseenter").pull-right.glyphicon.glyphicon-trash
+                        a(href="", tooltip="Edit", tooltip-placement="top", tooltip-trigger="mouseenter").pull-right.glyphicon.glyphicon-pencil
+                .panel-body
+                    p {{deck.description}}
+                    .row
+                        .col-sm-3(ng-repeat="tuple in deck.cards")
+                            .thumbnail
+                                a(href='#/card/{{tuple.card.id}}', ng-click="openCardModal($event, tuple.card.id)")
+                                    img.small-card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                

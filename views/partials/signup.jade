@@ -1,30 +1,74 @@
 .container
         p.well
                 | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in nisi magna. Nam faucibus dolor sed tortor faucibus sodales sed id eros. Donec pellentesque eros non rhoncus pretium. Sed id neque nulla. Nullam vitae lacinia tellus, in euismod tellus. Praesent et mauris commodo sem auctor consectetur. Proin ultricies placerat justo, et ultricies risus commodo vitae. Cras ac purus vitae dolor molestie vehicula.
-        h2 Sign up
-        .container-fluid
-                form.form-horizontal(role="form")
-                    .form-group
-                        label.col-sm-2.control-label(for="email") Email
-                        .col-sm-10
-                            input#email.form-control(type="email", placeholder="Email")
+        div(ng-if="success")
+            span You can now 
+            a(ng-click="openLoginModal()") log in
+            span  !
+        div(ng-if="!success")
+            h2 Sign up
+            .container-fluid
+                    form.form-horizontal(role="form", ng-submit="signup()")
+                        .form-group(ng-class="{'has-error': usernameerror}")
+                            label.col-sm-2.control-label(for="username") User name
+                            .col-sm-3
+                                input#username.form-control(type="username", placeholder="User name", ng-model="formSignup.username",required)
+                        .form-group(ng-class="{'has-error': emailerror}")
+                            label.col-sm-2.control-label(for="email") Email
+                            .col-sm-3
+                                input#email.form-control(type="email", placeholder="Email" ,ng-model="formSignup.email",required)
+                        .form-group(ng-class="{'has-error': passworderror}")
+                            label.col-sm-2.control-label(for="pwd") Password
+                            .col-sm-3
+                                input#pwd.form-control(type="password", placeholder="Password",ng-model="formSignup.password",required)
+                        .form-group(ng-class="{'has-error': passworderror}")
+                            label.col-sm-2.control-label(for="pwdchk") Retype password
+                            .col-sm-3
+                                input#pwdchk.form-control(type="password", placeholder="Password",ng-model="formSignup.passwordchk",required)
+                        .form-group
+                            label.col-sm-2.control-label(for="firstName") First name
+                            .col-sm-3
+                                input#firstName.form-control(type="firstName", placeholder="First name",ng-model="formSignup.firstName",required)
+                        .form-group
+                            label.col-sm-2.control-label(for="lastName") Last name
+                            .col-sm-3
+                                input#lastName.form-control(type="lastName", placeholder="Last name",ng-model="formSignup.lastName",required)
+                        .form-group
+                            label.col-sm-2.control-label(for="address",ng-model="formSignup.username") Address
+                            .col-sm-6 
+                                input#address.form-control(type="address", placeholder="Address",ng-model="formSignup.address",required)
+                        .form-group
+                            label.col-sm-2.control-label(for="additionalInformation") Additional Information
+                            .col-sm-6
+                                textarea#additionalInformation.form-control(type="additionalInformation", placeholder="Appartment number, locality, ...", ng-model="formSignup.additionalInformation")
+                        .form-group
+                            label.col-sm-2.control-label(for="city",ng-model="formSignup.username") City
+                            .col-sm-3 
+                                input#city.form-control(type="city", placeholder="City",ng-model="formSignup.city",required)
+                        .form-group
+                            label.col-sm-2.control-label(for="zipCode") Zip Code
+                            .col-sm-3 
+                                input#address.form-control(type="zipCode", placeholder="Zip Code",ng-model="formSignup.zipCode",required)
+                        .form-group
+                            label.col-sm-2.control-label(for="Country") Country
+                            .col-sm-3 
+                                input#country.form-control(type="Country", placeholder="Country",ng-model="formSignup.country",required)
 
-                    .form-group
-                        label.col-sm-2.control-label(for="pwd") Password
-                        .col-sm-10
-                            input#pwd.form-control(type="password", placeholder="Password")
-                    .form-group
-                        label.col-sm-2.control-label(for="pwdchk") Retype password
-                        .col-sm-10
-                            input#pwdchk.form-control(type="password", placeholder="Password")
+                        //.form-group
+                            .col-sm-offset-2.col-sm-10
+                                .checkbox
+                                    label
+                                        input(type="checkbox")
+                                        span Remember me
 
-                    .form-group
-                        .col-sm-offset-2.col-sm-10
-                            .checkbox
-                                label
-                                    input(type="checkbox")
-                                    span Remember me
-
-                    .form-group
-                        .col-sm-offset-2.col-sm-10
-                            button.btn.btn-default(type="submit") Sign up
+                        p.bg-warning(ng-if="passworderror")
+                            span.center-block.text-center.text-warning Password and password check do not match
+                        p.bg-warning(ng-if="usernameerror")
+                            span.center-block.text-center.text-warning A member with this username already exist
+                        p.bg-warning(ng-if="emailerror")
+                            span.center-block.text-center.text-warning A member with this email already exist
+                        p.bg-warning(ng-if="error")
+                            span.center-block.text-center.text-warning An unknown error occured. Try again later.
+                        .form-group
+                            .col-sm-offset-2.col-sm-10
+                                button.btn.btn-default(type="submit", ng-disabled="passworderror") Sign up

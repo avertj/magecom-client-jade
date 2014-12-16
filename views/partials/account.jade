@@ -1,0 +1,49 @@
+.container-fluid
+    div(ng-if="mustlog")
+        span You must 
+        a(ng-click="openLoginModal()") log in
+        span  or 
+        a(href="#/signup") sign up
+        span  before you can proceed.
+    div(ng-if="!mustlog")
+        .container
+            h1 Account details
+            hr
+            h3 Shipping
+            form.form-horizontal
+                .form-group
+                    label.control-label.col-sm-3(for="firstname") First name
+                    .col-sm-5
+                        input#firstname.form-control(ng-model="member.firstName", name="firstname", placeholder="First name", type="text")
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="lastname") Last name
+                    .col-sm-5
+                        input#lastname.form-control(ng-model="member.lastName", name="lastname", placeholder="Last name", type="text")
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="address") Address
+                    .col-sm-5
+                        input#address.form-control(ng-model="member.address", name="address", placeholder="Address", type="text")
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="addinfo") Additionnal information
+                    .col-sm-5
+                        textarea#addinfo.form-control(ng-model="member.additionalInformation", name="addinfo")
+                            | Appartment number, locality, ...
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="zipcode") Zip code
+                    .col-sm-2
+                        input#zipcode.form-control(ng-model="member.zipCode", name="zipcode", placeholder="Zip code", type="text")
+                    .col-sm-7
+                .form-group
+                    label.control-label.col-sm-3(for="city") City
+                    .col-sm-5
+                        input#city.form-control(ng-model="member.city", name="city", placeholder="City", type="text")
+                    .col-sm-4
+                .form-group
+                    label.control-label.col-sm-3(for="country") Country
+                    .col-sm-5
+                        input#country.form-control(ng-model="member.country", name="country", placeholder="Country", type="text")
+                    .col-sm-4

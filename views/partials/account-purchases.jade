@@ -1,0 +1,22 @@
+.container-fluid
+    div(ng-if="mustlog")
+        span You must 
+        a(ng-click="openLoginModal()") log in
+        span  or 
+        a(href="#/signup") sign up
+        span  before you can proceed.
+    div(ng-if="!mustlog")
+        .container
+            h1 Your purchases
+            .panel.panel-primary(ng-repeat="purchase in member.purchases")
+                .panel-body
+                    .row
+                        .col-sm-3(ng-repeat="tuple in purchase.cards")
+                            .thumbnail
+                                a(href='#/card/{{tuple.card.id}}', ng-click="openCardModal($event, tuple.card.id)")
+                                    img.small-card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                                .caption
+                                    span.center-block.text-center {{tuple.quantity}} x {{tuple.card.price | number:2}} €
+                .panel-footer
+                    span Purchased {{purchase.creationDate | date:'mediumDate'}}
+                    span.pull-right Total : {{purchase.total | number:2}} €

@@ -27,11 +27,11 @@
         .container-fluid
             form
                 .form-group
-                    button.btn.btn-success.pull-right Checkout
+                    a.btn.btn-success.pull-right(href="#/checkout") Checkout >
                     button.btn.btn-danger.pull-right(ng-click="openConfirmation()") Empty cart
     div(ng-if="$storage.cart.cards.length == 0")
         h2 Your cart is empty
-    //div(ng-controller="EmptyCartConfirmCtrl")
+
     script(type="text/ng-template", id="EmptyCartConfirm.html")
         .modal-header
             <h3 class="modal-title">Caution</h3>
