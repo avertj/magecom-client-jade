@@ -342,9 +342,9 @@ angular.module('magecomControllers')
             }, function () {
             });
         };
-    }]).controller('CardSearchModalInstanceCtrl', ['$scope', '$modalInstance', 'Card', function($scope, $modalInstance, Card) {
+    }]).controller('CardSearchModalInstanceCtrl', ['$scope', 'cdnLocation', '$modalInstance', 'Card', function($scope, cdnLocation, $modalInstance, Card) {
         $scope.cards = {};
-
+        $scope.cdnLocation = cdnLocation;
         $scope.doSearch = function () {
             Card.search.query($scope.form, function (cards) {
                 $scope.cards = cards;
