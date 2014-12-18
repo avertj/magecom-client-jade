@@ -74,7 +74,7 @@ script.
                 .row
                     .well
                         p Here you can browse decks. You can also share your knowledge of the game by 
-                            a.btn.btn-success(href="#/combo/new") Creating a deck
+                            a.btn.btn-success(href="#/deck/new") Creating a deck
                 .row(ng-if="decks.length > 0")
                     .col-xs-6.col-sm-4.col-md-3.col-lg-2(ng-repeat="deck in decks | limitTo: 20")
                         .thumbnail(tooltip="{{deck.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")

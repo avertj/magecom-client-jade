@@ -291,7 +291,7 @@ angular.module('magecomControllers')
             if(index < $scope.deck.cards.length) {
                 var newq = $scope.deck.cards[index].quantity + parseInt(qty);
                 if(card.rarity != 'BASIC_LAND') 
-                    newq = Math.min(newq, a);
+                    newq = Math.min(newq, 3);
                 $scope.deck.cards[index].quantity = Math.max(1, newq);
                 $scope.computeManaCosts();
                 $scope.computeNumberOfCards();
