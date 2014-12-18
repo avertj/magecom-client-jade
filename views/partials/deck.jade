@@ -26,47 +26,47 @@ script.
                             .form-inline
                                 .btn-group.btn-group-xs
                                     label.btn.btn-default.btn-exclude(ng-model="form.black" btn-radio="'false'")
-                                        img(src="/cards/symbol/small/B.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/B.jpg}}'")
                                     label.btn.btn-default.btn-ignore(ng-model="form.black" btn-radio="null")
-                                        img(src="/cards/symbol/small/B.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/B.jpg}}'")
                                     label.btn.btn-default.btn-include(ng-model="form.black" btn-radio="'true'")
-                                        img(src="/cards/symbol/small/B.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/B.jpg}}'")
                             //.col-sm-4
                             .form-inline
                                 .btn-group.btn-group-xs
                                     label.btn.btn-default.btn-exclude(ng-model="form.white" btn-radio="'false'")
-                                        img(src="/cards/symbol/small/W.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/W.jpg}}'")
                                     label.btn.btn-default.btn-ignore(ng-model="form.white" btn-radio="null")
-                                        img(src="/cards/symbol/small/W.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/W.jpg}}'")
                                     label.btn.btn-default.btn-include(ng-model="form.white" btn-radio="'true'")
-                                        img(src="/cards/symbol/small/W.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/W.jpg}}'")
                             //.col-sm-4
                             .form-inline
                                 .btn-group.btn-group-xs
                                     label.btn.btn-default.btn-exclude(ng-model="form.red" btn-radio="'false'")
-                                        img(src="/cards/symbol/small/R.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/R.jpg}}'")
                                     label.btn.btn-default.btn-ignore(ng-model="form.red" btn-radio="null")
-                                        img(src="/cards/symbol/small/R.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/R.jpg}}'")
                                     label.btn.btn-default.btn-include(ng-model="form.red" btn-radio="'true'")
-                                        img(src="/cards/symbol/small/R.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/R.jpg}}'")
                             //.col-sm-4
                             .form-inline
                                 .btn-group.btn-group-xs
                                     label.btn.btn-default.btn-exclude(ng-model="form.blue" btn-radio="'false'")
-                                        img(src="/cards/symbol/small/U.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/U.jpg}}'")
                                     label.btn.btn-default.btn-ignore(ng-model="form.blue" btn-radio="null")
-                                        img(src="/cards/symbol/small/U.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/U.jpg}}'")
                                     label.btn.btn-default.btn-include(ng-model="form.blue" btn-radio="'true'")
-                                        img(src="/cards/symbol/small/U.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/U.jpg}}'")
                             //.col-sm-4
                             .form-inline
                                 .btn-group.btn-group-xs
                                     label.btn.btn-default.btn-exclude(ng-model="form.green" btn-radio="'false'")
-                                        img(src="/cards/symbol/small/G.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/G.jpg}}'")
                                     label.btn.btn-default.btn-ignore(ng-model="form.green" btn-radio="null")
-                                        img(src="/cards/symbol/small/G.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/G.jpg}}'")
                                     label.btn.btn-default.btn-include(ng-model="form.green" btn-radio="'true'")
-                                        img(src="/cards/symbol/small/G.jpg")
+                                        img(ng-src="{{cdnLocation + 'symbol/small/G.jpg}}'")
                         button.pull-right.btn.btn-default(type="submit") Search
                         .clearfix
         .col-md-9
@@ -81,9 +81,9 @@ script.
                             a(href="#/deck/{{deck.id}}")
                                 carousel(ng-if="deck.cards.length > 1", interval="-1", ng-mouseenter="interval=1000; play();", ng-mouseleave="pause()")
                                     slide(ng-repeat="tuple in deck.cards",  active="tuple.active")
-                                        img.card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}')
-                                img.card-image(ng-if="deck.cards.length == 1", ng-src='{{cdnURL + "cards/card/" + deck.cards[0].card.id + ".jpg"}}')
-                                img.card-image(ng-if="deck.cards.length == 0", ng-src='{{cdnURL + "cards/card/default.jpg"}}')
+                                        img.card-image(ng-src='{{cdnLocation + "card/" + tuple.card.id + ".jpg"}}')
+                                img.card-image(ng-if="deck.cards.length == 1", ng-src='{{cdnLocation + "card/" + deck.cards[0].card.id + ".jpg"}}')
+                                img.card-image(ng-if="deck.cards.length == 0", ng-src='{{cdnLocation + "card/default.jpg"}}')
                                 span.mana-overlay
                                     span(ng-repeat="(color, value) in deck.color")
                                         span(ng-if="color == 'black' && value" ng-bind-html="'[B]' | mana:'medium'")

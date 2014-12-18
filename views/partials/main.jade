@@ -7,7 +7,7 @@
             .col-xs-6.col-sm-4.col-md-2.col-lg-2(ng-repeat="card in cards | limitTo : 10")
                 .thumbnail
                     a(href='#/card/{{card.id}}', ng-click="openCardModal($event, card.id)")
-                        img.card-image(ng-src='{{cdnURL + "cards/card/" + card.id + ".jpg"}}', alt='{{card.name}}', tooltip="{{card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                        img.card-image(ng-src='{{cdnLocation + "card/" + card.id + ".jpg"}}', alt='{{card.name}}', tooltip="{{card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
 
     p
         | Sed vel ipsum lectus. 

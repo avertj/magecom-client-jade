@@ -1,7 +1,7 @@
 .container
     .row
         .col-xs-3
-            img.card-image(ng-src='{{cdnURL + "cards/card/" + card.id + ".jpg"}}', alt='{{card.name}}')
+            img.card-image(ng-src='{{cdnLocation + "card/" + card.id + ".jpg"}}', alt='{{card.name}}')
         .col-xs-9
             h3(ng-class="{common: card.rarity == 'COMMON' || card.rarity == 'BASIC_LAND', uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}")  {{card.name}}
                 span.pull-right(ng-bind-html="card.manaString | mana:'medium'")

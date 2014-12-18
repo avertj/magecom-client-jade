@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('magecomControllers')
-    .controller('GlobalCtrl', ['$scope', '$log', '$modal', '$localStorage', '$sessionStorage', '$http', '$filter', 'Card', 'apiLocation', function($scope, $log, $modal, $localStorage, $sessionStorage, $http, $filter, Card, apiLocation) {
-        $scope.cdnURL = 'http://localhost:8000/';
+    .controller('GlobalCtrl', ['$scope', '$log', '$modal', '$localStorage', '$sessionStorage', '$http', '$filter', 'Card', 'apiLocation', 'cdnLocation', function($scope, $log, $modal, $localStorage, $sessionStorage, $http, $filter, Card, apiLocation, cdnLocation) {
         $scope.menu = {
             active: 'home'
         };
@@ -134,14 +133,14 @@ angular.module('magecomControllers')
         };
     });
 angular.module('magecomControllers')
-    .controller('LoginModalInstanceCtrl', function ($scope, $modalInstance, $http, $log) {
+    .controller('LoginModalInstanceCtrl', function ($scope, $modalInstance, $http, $log, apiLocation) {
 
         $scope.error = false;
         $scope.form = {};
 
         $scope.login = function () {
             $scope.error = false;
-            $http.post('http://localhost:8080/magecom-ejb/api/auth/login', $scope.form)
+            $http.post(apiLocation + 'magecom-ejb/api/auth/login', $scope.form)
                 .success(function(data, status, headers, config) {
                     $modalInstance.close(data);
                 }).error(function(data, status, headers, config) {

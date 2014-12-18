@@ -8,7 +8,7 @@
                 .col-xs-6.col-sm-4.col-md-2.col-lg-2(ng-repeat="tuple in $storage.cart.cards")
                     .thumbnail
                         a(href='#/card/{{tuple.id}}', ng-click="openCardModal($event, tuple.card.id, true)")
-                            img.card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                            img.card-image(ng-src='{{cdnLocation + "card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
                         .caption
                             .row
                                 .well.text-center {{tuple.quantity}} &times; {{tuple.card.price | number:2}} € = {{tuple.quantity*tuple.card.price | number:2}} €

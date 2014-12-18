@@ -7,5 +7,5 @@
         .col-sm-2(ng-repeat="tuple in combo.cards | orderBy: 'card.convertedManaCost'") 
             .thumbnail(ng-class="{'combo-favorite': tuple.favorite}")
                 a(href='#/card/{{tuple.card.id}}', ng-click="openCardModal($event, tuple.card.id)")
-                    img.small-card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                    img.small-card-image(ng-src='{{cdnLocation + "card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
                     span.quantity-overlay x {{tuple.quantity}}
