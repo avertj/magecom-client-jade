@@ -89,7 +89,8 @@ angular.module('magecomControllers')
                         },
                         hideCartButton: function() {
                             return hideButton;// ? true : false
-                        }
+                        },
+
                     }
                 });
 
@@ -117,10 +118,11 @@ angular.module('magecomControllers')
     }]);
 
 angular.module('magecomControllers')
-    .controller('CardModalInstanceCtrl', function ($scope, $modalInstance, card, hideCartButton) {
+    .controller('CardModalInstanceCtrl', function ($scope, $modalInstance, card, hideCartButton, cdnLocation) {
         $scope.card = card;
         $scope.hideCartButton = hideCartButton;
-
+        $scope.cdnLocation = cdnLocation;
+        
         $scope.addToCart = function () {
             $modalInstance.close('addToCart', card);
         };
