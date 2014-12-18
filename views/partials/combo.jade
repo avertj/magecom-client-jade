@@ -14,29 +14,13 @@ script.
         .col-md-3
             #sidebar
                 .well
-                    h4 Card search
+                    h4 Combo search
                     form.form-horizontal(role='form', ng-submit="search()")
                         .form-group
                             input.form-control.input-sm(type='text', placeholder='Name', ng-model='form.name')
                         .form-group
-                            input.form-control.input-sm(type='text', placeholder='Type', ng-model='form.type')
-                        .form-group
-                            input.form-control.input-sm(type='text', placeholder='Text', ng-model='form.text')
-                        //.form-group
-                            .row
-                                .col-sm-2
-                                    .form-inline
-                                        label.control-label(for='cmc') CMC
-                                .col-sm-8
-                                    .form-inline
-                                        .col-sm-4
-                                            select.form-control.input-sm
-                                                option(value='lt') &lt;
-                                                option(value='gt') &gt;
-                                                option(value='eq') =
-                                        .col-sm-8
-                                            input#cmc.form-control.input-sm(type='text', placeholder='Value')
-                        //.row
+                            input.form-control.input-sm(type='text', placeholder='Description', ng-model='form.description')
+
                         .form-group
                             //.col-sm-4
                             .form-inline
@@ -87,12 +71,27 @@ script.
                         .clearfix
         .col-md-9
             .container-fluid
-                .row(ng-if="cards.length > 0")
-                    .col-xs-6.col-sm-4.col-md-3.col-lg-2(ng-repeat="card in cards | limitTo: 20")
-                        .thumbnail
-                            a(href='#/card/{{card.id}}', ng-click="openCardModal($event, card.id)")
-                                img.card-image(ng-src='{{cdnURL + "cards/card/" + card.id + ".jpg"}}', alt='{{card.name}}', tooltip="{{card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
-
+                .row
+                    .well
+                        p Here you can browse combos. You can also share your knowledge of the game by 
+                            a.btn.btn-success(href="#/combo/new") Creating a combo
+                .row(ng-if="combos.length > 0")
+                    .col-xs-6.col-sm-4.col-md-3.col-lg-2(ng-repeat="combo in combos | limitTo: 20")
+                        .thumbnail(tooltip="{{combo.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                            a(href="#/combo/{{combo.id}}")
+                                carousel(ng-if="combo.cards.length > 1", interval="-1", ng-mouseenter="interval=1000; play();", ng-mouseleave="pause()")
+                                    slide(ng-repeat="tuple in combo.cards",  active="tuple.active")
+                                        img.card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}')
+                                img.card-image(ng-if="combo.cards.length == 1", ng-src='{{cdnURL + "cards/card/" + combo.cards[0].card.id + ".jpg"}}')
+                                img.card-image(ng-if="combo.cards.length == 0", ng-src='{{cdnURL + "cards/card/default.jpg"}}')
+                                span.mana-overlay
+                                    span(ng-repeat="(color, value) in combo.color")
+                                        span(ng-if="color == 'black' && value" ng-bind-html="'[B]' | mana:'medium'")
+                                        span(ng-if="color == 'blue' && value" ng-bind-html="'[U]' | mana:'medium'")
+                                        span(ng-if="color == 'green' && value" ng-bind-html="'[G]' | mana:'medium'")
+                                        span(ng-if="color == 'red' && value" ng-bind-html="'[R]' | mana:'medium'")
+                                        span(ng-if="color == 'white' && value" ng-bind-html="'[W]' | mana:'medium'")
+                                //.caption {{combo.name}}
                 .row(ng-if="cards.length == 0")
                     h3 Il n'y a pas de résultats pour votre recherche
             //p

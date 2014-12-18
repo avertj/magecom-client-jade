@@ -1,4 +1,4 @@
-.container
+.container(ng-if="displayEdit")
     form
         .form-group
             label(for="deckName") Name
@@ -42,7 +42,44 @@
                                 label
                                     input(type="checkbox", ng-checked="tuple.favorite", ng-disabled="!canfavorite", ng-model="tuple.favorite")
                                     span Card is highlight of deck
-    button.btn.btn-default.pull-right(ng-click="saveDeck()") Save
+    span Total : {{numberOfCards}} cards
+    button.btn.btn-default.pull-right(ng-click="saveDeck()", ng-disabled="numberOfCards < 15") Save
+    div
+        span.progress-mana(ng-bind-html="'[0]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.zero")
+            {{manaCosts.zero}}
+    div
+        span.progress-mana(ng-bind-html="'[1]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.one")
+            {{manaCosts.one}}
+    div
+        span.progress-mana(ng-bind-html="'[2]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.two")
+            {{manaCosts.two}}
+    div
+        span.progress-mana(ng-bind-html="'[3]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.three")
+            {{manaCosts.three}}
+    div
+        span.progress-mana(ng-bind-html="'[4]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.four")
+            {{manaCosts.four}}
+    div
+        span.progress-mana(ng-bind-html="'[5]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.five")
+            {{manaCosts.five}}
+    div
+        span.progress-mana(ng-bind-html="'[6]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.six")
+            {{manaCosts.six}}
+    div
+        span.progress-mana(ng-bind-html="'[7]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.seven")
+            {{manaCosts.seven}}
+    div
+        span.progress-mana(ng-bind-html="'[8]' | mana:'small'")
+        progressbar(max="15", animate="false", value="manaCosts.eightplus")
+            {{manaCosts.eightplus}}
 
     script(type="text/ng-template", id="CardSearchModal.html")
         .modal-header
@@ -54,7 +91,9 @@
                     span.input-group-btn
                         button.btn.btn-default(type="submit") Search
             .container
-                p(ng-repeat="card in cards")
-                    a(ng-click="select(card)", ng-class="{common: card.rarity == 'COMMON', uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}") {{card.name}}
+                p(ng-if="cards.length == 0") No cards to display
+                p(ng-if="cards.length > 0" ng-repeat="card in cards")
+                    a(ng-click="select(card)", ng-class="{common: card.rarity == 'COMMON' || card.rarity == 'BASIC_LAND', uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}") {{card.name}}
+                    span(ng-bind-html="card.manaString | mana:'small'")
         .modal-footer
             button.btn.btn-default(ng-click="cancel()") Cancel

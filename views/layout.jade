@@ -35,11 +35,11 @@ html(lang='fr')
                             li(ng-class="{active: menu.active == 'deck'}")
                                 a(href='#/deck') Decks
                             li(ng-class="{active: menu.active == 'combo'}")
-                                a(href='#') Combos
+                                a(href='#/combo') Combos
                             li(ng-class="{active: menu.active == 'player'}")
-                                a(href='#') Players
+                                a(href='#/player') Players
                         ul.nav.navbar-nav.navbar-right(ng-if="$sessionStorage.user")
-                            li.dropdown
+                            li.dropdown(ng-class="{active: menu.active == 'account'}")
                                 a.dropdown-toggle(href='#')
                                     | {{$sessionStorage.user.username}} 
                                     span.caret
@@ -83,15 +83,19 @@ html(lang='fr')
                         | Conditions - bla bla - legal - nia nia
 
         script(src='/javascripts/app.js')
+        script(src='/javascripts/providers/api-location.js')
+        script(src='/javascripts/filters/mana.js')
         script(src='/javascripts/services/card.js')
         script(src='/javascripts/services/deck.js')
+        script(src='/javascripts/services/combo.js')
         script(src='/javascripts/services/member.js')
         script(src='/javascripts/services/purchase.js')
-        script(src='/javascripts/filters/mana.js')
         script(src='/javascripts/controllers/global.js')
         script(src='/javascripts/controllers/main.js')
         script(src='/javascripts/controllers/card.js')
         script(src='/javascripts/controllers/deck.js')
+        script(src='/javascripts/controllers/combo.js')
+        script(src='/javascripts/controllers/player.js')
         script(src='/javascripts/controllers/cart.js')
         script(src='/javascripts/controllers/account.js')
         script(src='/javascripts/controllers/checkout.js')

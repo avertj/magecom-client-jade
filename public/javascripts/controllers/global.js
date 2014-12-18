@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('magecomControllers')
-    .controller('GlobalCtrl', ['$scope', '$log', '$modal', '$localStorage', '$sessionStorage', '$http', '$filter', 'Card', function($scope, $log, $modal, $localStorage, $sessionStorage, $http, $filter, Card) {
+    .controller('GlobalCtrl', ['$scope', '$log', '$modal', '$localStorage', '$sessionStorage', '$http', '$filter', 'Card', 'apiLocation', function($scope, $log, $modal, $localStorage, $sessionStorage, $http, $filter, Card, apiLocation) {
         $scope.cdnURL = 'http://localhost:8000/';
-        $scope.apiURL = 'http://localhost:8080/magecom-ejb/api/';
         $scope.menu = {
             active: 'home'
         };
@@ -21,7 +20,7 @@ angular.module('magecomControllers')
             $scope.$sessionStorage.user = null;
         } else {
             if($scope.$sessionStorage.user.token) {
-                $http.post('http://localhost:8080/magecom-ejb/api/auth/validate', $scope.$sessionStorage.user).
+                $http.post(apiLocation + 'magecom-ejb/api/auth/validate', $scope.$sessionStorage.user).
                     success(function(data, status, headers, config) {
                     }).
                     error(function(data, status, headers, config) {

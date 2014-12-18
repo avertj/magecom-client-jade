@@ -1,0 +1,17 @@
+.container
+    h3 {{player.username}}
+
+    div(ng-if="player.decks.length > 0")
+        .panel.panel-primary
+            .panel-heading
+                .panel-title Decks
+            .panel-body
+                p(ng-repeat="deck in player.decks")
+                    a(href="#/deck/{{deck.id}}") {{deck.name}}
+    div(ng-if="player.combos.length > 0")
+        .panel.panel-primary
+            .panel-heading
+                .panel-title Combos
+            .panel-body
+                p(ng-repeat="combo in player.combos")
+                    a(href="#/combo/{{combo.id}}") {{combo.name}}

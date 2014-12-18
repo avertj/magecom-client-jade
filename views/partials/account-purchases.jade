@@ -8,10 +8,10 @@
     div(ng-if="!mustlog")
         .container
             h1 Your purchases
-            .panel.panel-primary(ng-repeat="purchase in member.purchases")
+            .panel.panel-primary(ng-repeat="purchase in member.purchases | orderBy: 'creationDate':true")
                 .panel-body
                     .row
-                        .col-sm-3(ng-repeat="tuple in purchase.cards")
+                        .col-sm-2(ng-repeat="tuple in purchase.cards")
                             .thumbnail
                                 a(href='#/card/{{tuple.card.id}}', ng-click="openCardModal($event, tuple.card.id)")
                                     img.small-card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")

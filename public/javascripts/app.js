@@ -25,6 +25,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'partials/deck.html',
             controller: 'DeckCtrl'
         })
+        .when('/deck/new', {
+            templateUrl: 'partials/deck-edit.html',
+            controller: 'DeckNewCtrl'
+        })
         .when('/deck/:deckId', {
             templateUrl: 'partials/deck-detail.html',
             controller: 'DeckDetailCtrl'
@@ -32,6 +36,30 @@ app.config(function ($routeProvider) {
         .when('/deck/:deckId/edit', {
             templateUrl: 'partials/deck-edit.html',
             controller: 'DeckEditCtrl'
+        })
+        .when('/combo', {
+            templateUrl: 'partials/combo.html',
+            controller: 'ComboCtrl'
+        })
+        .when('/combo/new', {
+            templateUrl: 'partials/combo-edit.html',
+            controller: 'ComboNewCtrl'
+        })
+        .when('/combo/:comboId', {
+            templateUrl: 'partials/combo-detail.html',
+            controller: 'ComboDetailCtrl'
+        })
+        .when('/combo/:comboId/edit', {
+            templateUrl: 'partials/combo-edit.html',
+            controller: 'ComboEditCtrl'
+        })
+        .when('/player', {
+            templateUrl: 'partials/player.html',
+            controller: 'PlayerCtrl'
+        })
+        .when('/player/:playerId', {
+            templateUrl: 'partials/player-detail.html',
+            controller: 'PlayerDetailCtrl'
         })
         .when('/cart', {
             templateUrl: 'partials/cart.html',

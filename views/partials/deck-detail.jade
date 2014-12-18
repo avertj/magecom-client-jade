@@ -1,9 +1,49 @@
 .container
-    h3 {{deck.name}}
-    p {{deck.description}}
+    h3 {{deck.name}} by 
+        a(href="#/player/{{deck.member.id}}"){{deck.member.username}}
+        button.pull-right.btn.btn-success(ng-click="addAllToCart()") Add all to cart
+    p.well {{deck.description}}
     .row
-        .col-sm-3(ng-repeat="tuple in deck.cards") 
+        .col-sm-2(ng-repeat="tuple in deck.cards | orderBy: 'card.convertedManaCost'") 
             .thumbnail(ng-class="{'deck-favorite': tuple.favorite}")
                 a(href='#/card/{{tuple.card.id}}', ng-click="openCardModal($event, tuple.card.id)")
-                    img.card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                    img.small-card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
                     span.quantity-overlay x {{tuple.quantity}}
+    .row
+        span Total : {{numberOfCards}} cards
+        div
+            span.progress-mana(ng-bind-html="'[0]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.zero")
+                {{manaCosts.zero}}
+        div
+            span.progress-mana(ng-bind-html="'[1]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.one")
+                {{manaCosts.one}}
+        div
+            span.progress-mana(ng-bind-html="'[2]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.two")
+                {{manaCosts.two}}
+        div
+            span.progress-mana(ng-bind-html="'[3]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.three")
+                {{manaCosts.three}}
+        div
+            span.progress-mana(ng-bind-html="'[4]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.four")
+                {{manaCosts.four}}
+        div
+            span.progress-mana(ng-bind-html="'[5]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.five")
+                {{manaCosts.five}}
+        div
+            span.progress-mana(ng-bind-html="'[6]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.six")
+                {{manaCosts.six}}
+        div
+            span.progress-mana(ng-bind-html="'[7]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.seven")
+                {{manaCosts.seven}}
+        div
+            span.progress-mana(ng-bind-html="'[8]' | mana:'small'")
+            progressbar(max="15", animate="false", value="manaCosts.eightplus")
+                {{manaCosts.eightplus}}

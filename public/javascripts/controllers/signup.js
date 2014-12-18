@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('magecomControllers')
-    .controller('SignupCtrl', ['$scope', '$log', '$location', '$http', 'Member', function($scope, $log, $location, $http, Member) {
+    .controller('SignupCtrl', ['$scope', '$log', '$location', '$http', 'Member', 'apiLocation', function($scope, $log, $location, $http, Member, apiLocation) {
         $scope.menu.active = 'signup';
 
         if($scope.$sessionStorage.user) {
@@ -38,7 +38,7 @@ angular.module('magecomControllers')
             var data = angular.copy($scope.formSignup);
             delete data.passwordchk;
             Member.detail.post(data, function (data) {
-                $http.post('http://localhost:8080/magecom-ejb/api/auth/login', {username: data.username, password: data.password})
+                $http.post(apiLocation + 'magecom-ejb/api/auth/login', {username: data.username, password: data.password})
                 .success(function(data, status, headers, config) {
                     $scope.setCurrentUser(data);
                 })

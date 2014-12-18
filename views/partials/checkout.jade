@@ -74,7 +74,7 @@
                         td Total
                     tr(ng-repeat="tuple in $storage.cart.cards")
                         td
-                            a(ng-click="openCardModal($event, tuple.card.id, true)", ng-class="{common: tuple.card.rarity == 'COMMON', uncommon: tuple.card.rarity == 'UNCOMMON', rare: tuple.card.rarity == 'RARE'}") {{tuple.card.name}}
+                            a(ng-click="openCardModal($event, tuple.card.id, true)", ng-class="{common: tuple.card.rarity == 'COMMON' || tuple.card.rarity == 'BASIC_LAND', uncommon: tuple.card.rarity == 'UNCOMMON', rare: tuple.card.rarity == 'RARE'}") {{tuple.card.name}}
                         td 
                             span {{tuple.card.price | number:2}} €
                         td 

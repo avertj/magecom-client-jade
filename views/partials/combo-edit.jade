@@ -1,0 +1,58 @@
+.container(ng-if="displayEdit")
+    form
+        .form-group
+            label(for="comboName") Name
+            input#comboName.form-control(type="text", ng-model="combo.name", style="width: 200px;")
+            span.pull-right(ng-if="combo.color.black") 
+                img(src='/cards/symbol/medium/B.jpg')
+            span.pull-right(ng-if="combo.color.blue") 
+                img(src='/cards/symbol/medium/U.jpg')
+            span.pull-right(ng-if="combo.color.green") 
+                img(src='/cards/symbol/medium/G.jpg')
+            span.pull-right(ng-if="combo.color.red") 
+                img(src='/cards/symbol/medium/R.jpg')
+            span.pull-right(ng-if="combo.color.white") 
+                img(src='/cards/symbol/medium/W.jpg')
+        .form-group
+            label(for="comboDescription") Description
+            textarea#comboDescription.form-control(type="text", ng-model="combo.description")
+
+    button.btn.btn-success(ng-click="openSearchModal()") Add card
+    .row
+        .col-sm-3(ng-repeat="tuple in combo.cards") 
+            .thumbnail
+                a(href='#/card/{{tuple.card.id}}', ng-click="openCardModal($event, tuple.card.id)")
+                    img.small-card-image(ng-src='{{cdnURL + "cards/card/" + tuple.card.id + ".jpg"}}', alt='{{tuple.card.name}}', tooltip="{{tuple.card.name}}", tooltip-placement="top", tooltip-trigger="mouseenter")
+                .caption
+                    .container-fluid
+                        .row
+                            .col-xs-6
+                                .input-group.bootstrap-touchspin
+                                    input.form-control.spinner-input(type='text', name='spin', ng-model='tuple.quantity')
+                                    span.input-group-btn-vertical
+                                        button.btn.btn-default.bootstrap-touchspin-up(type='button', ng-click="addToCombo(tuple.card, 1)")
+                                            i.glyphicon.glyphicon-plus
+                                        button.btn.btn-default.bootstrap-touchspin-down(type='button', ng-click="addToCombo(tuple.card, -1)")
+                                            i.glyphicon.glyphicon-minus
+                            .col-xs-6
+                                button.btn.btn-danger(ng-click="removeFromCombo(tuple.card)")
+                                    span Remove
+    span Total : {{numberOfCards}} cards
+    button.btn.btn-default.pull-right(ng-click="saveCombo()", ng-disabled="numberOfCards < 2 || numberOfCards > 8") Save
+
+    script(type="text/ng-template", id="CardSearchModal.html")
+        .modal-header
+            <h3 class="modal-title">Search</h3>
+        .modal-body
+            form(role='search', ng-submit="doSearch()")
+                .input-group
+                    input.form-control(type='text', placeholder='Search', ng-model="form.name")
+                    span.input-group-btn
+                        button.btn.btn-default(type="submit") Search
+            .container
+                p(ng-if="cards.length == 0") No cards to display
+                p(ng-if="cards.length > 0" ng-repeat="card in cards")
+                    a(ng-click="select(card)", ng-class="{common: card.rarity == 'COMMON' || card.rarity == 'BASIC_LAND', uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}") {{card.name}}
+                    span(ng-bind-html="card.manaString | mana:'small'")
+        .modal-footer
+            button.btn.btn-default(ng-click="cancel()") Cancel
