@@ -5,7 +5,7 @@ angular.module('magecomFilters')
         return function(str, size) {
             if(str) {
                 var pattern = /\[(.)\]/gi;
-                return str.replace(pattern, "<img ng-src='{{cdnLocation + \'/cards/symbol/" + size + "/$1.jpg\'}}'>");
+                return str.replace(pattern, "<img ng-src='{{cdnLocation + \"/cards/symbol/" + size + "/$1.jpg\"}}'>");
             }// else {
 
             //}
