@@ -1,6 +1,6 @@
 .container
     h3 {{combo.name}} by 
-        a(href="#/player/{{combo.member.id}}"){{combo.member.username}}
+        a(href="#/player/{{combo.member.id}}") {{combo.member.username}}
         button.pull-right.btn.btn-success(ng-click="addAllToCart()") Add all to cart
     p.well {{combo.description}}
     .row

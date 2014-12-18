@@ -16,12 +16,12 @@
             div(ng-if="decks.length > 0")
                 h5 Decks containing this card
                 p(ng-repeat="deck in decks")
-                    a(href="#/deck/{{deck.id}}"){{deck.name}}
+                    a(href="#/deck/{{deck.id}}") {{deck.name}}
                     span  by 
-                    a(href="#/player/{{deck.member.id}}"){{deck.member.username}}
+                    a(href="#/player/{{deck.member.id}}") {{deck.member.username}}
             div(ng-if="combos.length > 0")
                 h5 Combos containing this card
                 p(ng-repeat="combo in combos")
-                    a(href="#/combo/{{combo.id}}"){{combo.name}}
+                    a(href="#/combo/{{combo.id}}") {{combo.name}}
                     span  by 
-                    a(href="#/player/{{deck.member.id}}"){{deck.member.username}}
+                    a(href="#/player/{{deck.member.id}}") {{deck.member.username}}

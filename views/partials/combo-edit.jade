@@ -3,16 +3,16 @@
         .form-group
             label(for="comboName") Name
             input#comboName.form-control(type="text", ng-model="combo.name", style="width: 200px;")
-            span.pull-right(ng-if="combo.color.black") 
-                img(src='/cards/symbol/medium/B.jpg')
-            span.pull-right(ng-if="combo.color.blue") 
-                img(src='/cards/symbol/medium/U.jpg')
-            span.pull-right(ng-if="combo.color.green") 
-                img(src='/cards/symbol/medium/G.jpg')
-            span.pull-right(ng-if="combo.color.red") 
-                img(src='/cards/symbol/medium/R.jpg')
-            span.pull-right(ng-if="combo.color.white") 
-                img(src='/cards/symbol/medium/W.jpg')
+            span.pull-right(ng-if="combo.color.black")
+                img(ng-src="{{cdnLocation + 'symbol/medium/B.jpg'}}")
+            span.pull-right(ng-if="combo.color.blue")
+                img(ng-src="{{cdnLocation + 'symbol/medium/U.jpg'}}")
+            span.pull-right(ng-if="combo.color.green")
+                img(ng-src="{{cdnLocation + 'symbol/medium/G.jpg'}}")
+            span.pull-right(ng-if="combo.color.red")
+                img(ng-src="{{cdnLocation + 'symbol/medium/R.jpg'}}")
+            span.pull-right(ng-if="combo.color.white")
+                img(ng-src="{{cdnLocation + 'symbol/medium/W.jpg'}}")
         .form-group
             label(for="comboDescription") Description
             textarea#comboDescription.form-control(type="text", ng-model="combo.description")
