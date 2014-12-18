@@ -93,7 +93,7 @@
             .container
                 p(ng-if="cards.length == 0") No cards to display
                 p(ng-if="cards.length > 0" ng-repeat="card in cards")
-                    a(ng-click="select(card)", ng-class="{common: card.rarity == 'COMMON' || card.rarity == 'BASIC_LAND', uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE'}") {{card.name}}
+                    a(ng-click="select(card)", ng-class="{common: card.rarity == 'COMMON' || card.rarity == 'BASIC_LAND', uncommon: card.rarity == 'UNCOMMON', rare: card.rarity == 'RARE', mythic: card.rarity == 'MYTHIC_RARE'}") {{card.name}}
                     span(ng-bind-html="card.manaString | mana:'small'")
         .modal-footer
             button.btn.btn-default(ng-click="cancel()") Cancel
