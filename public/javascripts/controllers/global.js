@@ -6,6 +6,7 @@ angular.module('magecomControllers')
             active: 'home'
         };
 
+        $scope.cdnLocation = cdnLocation;
         $scope.$storage = $localStorage;
         $scope.$sessionStorage = $sessionStorage;
 
