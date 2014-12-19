@@ -53,15 +53,15 @@ angular.module('magecomControllers')
             angular.forEach($scope.deck.cards, function (value, key) {
                 if(value.card.rarity != 'BASIC_LAND') {
                     switch(value.card.convertedManaCost) {
-                        case 0: $scope.manaCosts.zero++; break;
-                        case 1: $scope.manaCosts.one++; break;
-                        case 2: $scope.manaCosts.two++; break;
-                        case 3: $scope.manaCosts.three++; break;
-                        case 4: $scope.manaCosts.four++; break;
-                        case 5: $scope.manaCosts.five++; break;
-                        case 6: $scope.manaCosts.six++; break;
-                        case 7: $scope.manaCosts.seven++; break;
-                        default: $scope.manaCosts.eightplus++; break
+                        case 0: $scope.manaCosts.zero += value.quantity; break;
+                        case 1: $scope.manaCosts.one += value.quantity; break;
+                        case 2: $scope.manaCosts.two += value.quantity; break;
+                        case 3: $scope.manaCosts.three += value.quantity; break;
+                        case 4: $scope.manaCosts.four += value.quantity; break;
+                        case 5: $scope.manaCosts.five += value.quantity; break;
+                        case 6: $scope.manaCosts.six += value.quantity; break;
+                        case 7: $scope.manaCosts.seven += value.quantity; break;
+                        default: $scope.manaCosts.eightplus += value.quantity; break
                     }
                 }
             });
@@ -123,15 +123,15 @@ angular.module('magecomControllers')
             angular.forEach($scope.deck.cards, function (value, key) {
                 if(value.card.rarity != 'BASIC_LAND') {
                     switch(value.card.convertedManaCost) {
-                        case 0: $scope.manaCosts.zero++; break;
-                        case 1: $scope.manaCosts.one++; break;
-                        case 2: $scope.manaCosts.two++; break;
-                        case 3: $scope.manaCosts.three++; break;
-                        case 4: $scope.manaCosts.four++; break;
-                        case 5: $scope.manaCosts.five++; break;
-                        case 6: $scope.manaCosts.six++; break;
-                        case 7: $scope.manaCosts.seven++; break;
-                        default: $scope.manaCosts.eightplus++; break
+                        case 0: $scope.manaCosts.zero += value.quantity; break;
+                        case 1: $scope.manaCosts.one += value.quantity; break;
+                        case 2: $scope.manaCosts.two += value.quantity; break;
+                        case 3: $scope.manaCosts.three += value.quantity; break;
+                        case 4: $scope.manaCosts.four += value.quantity; break;
+                        case 5: $scope.manaCosts.five += value.quantity; break;
+                        case 6: $scope.manaCosts.six += value.quantity; break;
+                        case 7: $scope.manaCosts.seven += value.quantity; break;
+                        default: $scope.manaCosts.eightplus += value.quantity; break
                     }
                 }
             });
