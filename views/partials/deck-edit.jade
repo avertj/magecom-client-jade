@@ -3,16 +3,16 @@
         .form-group
             label(for="deckName") Name
             input#deckName.form-control(type="text", ng-model="deck.name", style="width: 200px;")
-            span.pull-right(ng-if="deck.color.black") 
-                img(src='/cards/symbol/medium/B.jpg')
-            span.pull-right(ng-if="deck.color.blue") 
-                img(src='/cards/symbol/medium/U.jpg')
-            span.pull-right(ng-if="deck.color.green") 
-                img(src='/cards/symbol/medium/G.jpg')
-            span.pull-right(ng-if="deck.color.red") 
-                img(src='/cards/symbol/medium/R.jpg')
-            span.pull-right(ng-if="deck.color.white") 
-                img(src='/cards/symbol/medium/W.jpg')
+            span.pull-right(ng-if="deck.color.black")
+                img(ng-src="{{cdnLocation + 'symbol/medium/B.jpg'}}")
+            span.pull-right(ng-if="deck.color.blue")
+                img(ng-src="{{cdnLocation + 'symbol/medium/U.jpg'}}")
+            span.pull-right(ng-if="deck.color.green")
+                img(ng-src="{{cdnLocation + 'symbol/medium/G.jpg'}}")
+            span.pull-right(ng-if="deck.color.red")
+                img(ng-src="{{cdnLocation + 'symbol/medium/R.jpg'}}")
+            span.pull-right(ng-if="deck.color.white")
+                img(ng-src="{{cdnLocation + 'symbol/medium/W.jpg'}}")
         .form-group
             label(for="deckDescription") Description
             textarea#deckDescription.form-control(type="text", ng-model="deck.description")
